@@ -6,6 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Damnazon.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+//using Microsoft.Extensions.Hosting;
 
 namespace Damnazon
 {
@@ -24,6 +29,10 @@ namespace Damnazon
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
+      services.AddScoped<ICategoryRepository, CategoryRepository>();
+      services.AddScoped<IProductRepository, ProductRepository>();
+      services.AddScoped<IOrderRepository, OrderRepository>();
+
 
       services.AddEntityFrameworkMySql()
         .AddDbContext<DamnazonContext>(options => options
