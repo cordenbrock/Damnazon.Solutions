@@ -50,6 +50,6 @@ namespace Damnazon.Models
         public decimal OrderTotal { get; set; }
 
         [BindNever]
-        public DateTime OrderPlaced { get; set; }
+        public DateTime OrderPlaced { get; set; } 
     }
 }
