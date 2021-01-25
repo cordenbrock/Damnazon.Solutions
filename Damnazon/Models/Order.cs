@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Damnazon.Models
 {
-     public class Order
+      public class Order
     {
         [BindNever]
         public int OrderId { get; set; }
