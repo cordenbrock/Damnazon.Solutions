@@ -16,9 +16,3 @@ namespace Damnazon.Models
     public IEnumerable<Category> GetAllCategories => _db.Categories;
   }
 }
-    // public IEnumerable<Category> GetAllCategories => new List<Category>
-    // {
-    //   new Category{CategoryId=1, CategoryName="Assets", CategoryDescription="sdfg"},
-    //   new Category{CategoryId=1, CategoryName="Properties", CategoryDescription="sdfdg"},
-    //   new Category{CategoryId=1, CategoryName="Vehicles", CategoryDescription="sdfdg"}
-    // };
