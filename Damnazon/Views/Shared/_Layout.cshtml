@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -7,44 +6,38 @@
   <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
   <script src="~/lib/jquery/jquery.js"></script>
   <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-  <link href="~/content/site.css" rel="stylesheet" />
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <link href="~/css/site.css" rel="stylesheet" />
   <title>@ViewBag.Title</title>
 </head>
-<body>
+
   <div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar">
+        <img class="img-responsive" src="~/img/damnazon.png" />
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+          <ul class="nav navbar-nav" id="navigationTitles">
+            <li><a asp-controller="Home" asp-action="Index"><span class="navSpan">Home</span></a></li>
             @* @await Component.InvokeAsync("CategoryMenu") *@
-            <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+            <li><a asp-controller="Contact" asp-action="Index"><span class="navSpan">Contact</span></a></li>
             @* @await Component.InvokeAsync("ShoppingCartSummary") *@
             <partial name="_LoginPartial"/>
           </ul>
         </div>
       </div>
     </nav>
-
-    <div class="row">
-      <div class="col-md-3">
-        <p class="lead">
-          @* <img class="img-responsive" src="~/Images/logo.png" /> *@
-        </p>
-      </div>
-      <div class="col-md-9">
-        @RenderBody()
-      </div>
+  <body>
+    <div class="col-md-9">
+      @RenderBody()
     </div>
-      @RenderSection("Scripts", required: false)
-  </div>
-</body>
+    @RenderSection("Scripts", required: false)
+  </body>
 </html>

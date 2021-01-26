@@ -1,11 +1,11 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/* a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
+} */
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -28,7 +28,6 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
-
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
@@ -43,7 +42,10 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  background-color: rgb(223, 210, 210);
+  padding-top: 150px;
+  text-align: center;
 }
 .footer {
   position: absolute;
@@ -54,3 +56,117 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.img-responsive {
+  float: left;
+  width: 1in;
+  height: 0.73in;
+  /* margin-top: 10px;
+  margin-left: 15px; */
+}
+
+.navbar {
+  background-color: rgb(28, 33, 49);
+  padding: 5px;
+  /* border: 1px solid transparent;
+  border-radius: 3px; */
+} 
+
+#navigationTitles {
+  float: right;
+  padding: 10px;
+
+}
+
+/* #navigationTitles:a {
+  border: 1px solid white;
+} */
+
+
+/* .navSpan {
+  color: white
+} */
+
+.navbar a:hover {
+  border: 1px solid white;
+}
+
+
+li {
+  font-size: 15px;
+  border: 0.1px solid rgb(0, 0, 0);
+  border-radius: 0.2cm;
+  /* padding: 10px 20px; */
+  /* cursor: pointer;
+  background: none; */
+}
+
+/* li:hover{
+  border: 1px solid rgba(255,255,255, .4);
+  color: black;
+} */
+
+.caption {
+  height: 130px;
+  overflow: hidden;
+}
+
+.thumbnail {
+  padding: 0;
+}
+
+.thumbnail .caption-full {
+  padding: 9px;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
