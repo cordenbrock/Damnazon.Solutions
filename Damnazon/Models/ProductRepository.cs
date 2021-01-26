@@ -22,7 +22,20 @@ namespace Damnazon.Models
           return _db.Products.Include(p => p.Category);
         }
     }
+    public IEnumerable<Product> GetDamnazonsChoiceProducts
+    {
+      get
+      {
+        return _db.Products.Include(p => p.IsDamnazonsChoice);
+      }
+    }
 
+    public IEnumerable<Product> GetDamnazonSlimeProducts
+    {
+      get{
+        return _db.Products.Include(p => p.IsDamnazonsChoice);
+      }
+    }
     public Product GetProductById(int productId)
     {
       return _db.Products.FirstOrDefault(p => p.ProductId == productId);
