@@ -3,14 +3,16 @@ using System;
 using Damnazon.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Damnazon.Migrations
 {
     [DbContext(typeof(DamnazonContext))]
-    partial class DamnazonContextModelSnapshot : ModelSnapshot
+    [Migration("20210126170521_addReseed")]
+    partial class addReseed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,14 +172,6 @@ namespace Damnazon.Migrations
 
                     b.Property<int>("CategoryId");
 
-                    b.Property<string>("Image");
-
-                    b.Property<bool>("IsDamnazonSlime");
-
-                    b.Property<bool>("IsDamnazonsChoice");
-
-                    b.Property<bool>("IsInStock");
-
                     b.Property<string>("ProductDescription");
 
                     b.Property<string>("ProductName");
@@ -195,36 +189,24 @@ namespace Damnazon.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 1,
-                            Image = "",
-                            IsDamnazonSlime = true,
-                            IsDamnazonsChoice = true,
-                            IsInStock = false,
-                            ProductDescription = "Space bugs, everywhere, hurry, buy blue origin stock today, fight cosmic insects!",
-                            ProductName = "Lorem Blue Origin Stocksum",
+                            ProductDescription = "EXAMPLE",
+                            ProductName = "EXAMPLE",
                             ProductPrice = 5.25m
                         },
                         new
                         {
                             ProductId = 2,
                             CategoryId = 2,
-                            Image = "",
-                            IsDamnazonSlime = false,
-                            IsDamnazonsChoice = true,
-                            IsInStock = false,
-                            ProductDescription = "Real news based on real true facts",
-                            ProductName = "Lorem Washerington Pest",
+                            ProductDescription = "EXAMPLE",
+                            ProductName = "EXAMPLE",
                             ProductPrice = 4.10m
                         },
                         new
                         {
                             ProductId = 3,
                             CategoryId = 3,
-                            Image = "",
-                            IsDamnazonSlime = true,
-                            IsDamnazonsChoice = false,
-                            IsInStock = false,
-                            ProductDescription = "WOOOOOOOOOOOO",
-                            ProductName = "Lorem Bezos Bicyclusum",
+                            ProductDescription = "EXAMPLE",
+                            ProductName = "EXAMPLE",
                             ProductPrice = 2.5m
                         });
                 });
