@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace Damnazon
 
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddSwaggerDocument();
       services.AddMvc();
       services.AddScoped<ICategoryRepository, CategoryRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
@@ -38,7 +40,7 @@ namespace Damnazon
         .AddDbContext<DamnazonContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
-      services.AddIdentity<ApplicationUser, IdentityRole>()
+      services.AddIdentity<IdentityUser, IdentityRole>()
         .AddEntityFrameworkStores<DamnazonContext>()
         .AddDefaultTokenProviders();
 
@@ -60,6 +62,8 @@ namespace Damnazon
       app.UseDeveloperExceptionPage();
 
       app.UseAuthentication();
+      app.UseOpenApi();
+      app.UseSwaggerUi3();
 
       app.UseMvc(routes =>
       {
