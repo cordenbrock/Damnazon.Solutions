@@ -40,7 +40,7 @@ namespace Damnazon
         .AddDbContext<DamnazonContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
-      services.AddIdentity<IdentityUser, IdentityRole>()
+      services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<DamnazonContext>()
         .AddDefaultTokenProviders();
 

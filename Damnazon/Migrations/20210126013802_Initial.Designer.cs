@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Damnazon.Migrations
 {
     [DbContext(typeof(DamnazonContext))]
-    [Migration("20210125233234_Initial")]
+    [Migration("20210126013802_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
