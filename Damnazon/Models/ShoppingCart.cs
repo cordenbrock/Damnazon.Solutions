@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Damnazon.Models
@@ -10,64 +11,91 @@ namespace Damnazon.Models
   public class ShoppingCart
   {
     private readonly DamnazonContext _db;
-    public string OrderProductGuid { get; set; } // Trying OrderProduct; might need to change to shoppingCartItem if it doesn't work
-    public List<OrderProduct> OrderProduct { get; set; }
+    public string ShoppingCartId { get; set; }
+    public List<ShoppingCartItem> ShoppingCartItems { get; set; }
     public ShoppingCart(DamnazonContext db)
     {
       _db = db;
     }
 
-    public static ShoppingCart GetCart(IServiceProvider services)
+    public static ShoppingCart GetShoppingCart(IServiceProvider services)
     {
       ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
       var context = services.GetService<DamnazonContext>();
-      string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
-      session.SetString("CartId", cartId);
+      string shoppingCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+      session.SetString("ShoppingCartId", shoppingCartId);
 
-      return new ShoppingCart(context) { OrderProductGuid = cartId };
+      return new ShoppingCart(context) { ShoppingCartId = shoppingCartId };
     }
 
-    public void AddToCart(Product product, int quantity) {
-      var orderProduct = _db.OrderProduct.SingleOrDefault(
-        s => s.Product.ProductId == product.ProductId && s.OrderProductGuid == OrderProductGuid);
+    public void AddToShoppingCart(Product product, int quantity) {
+      var shoppingCartItem = _db.ShoppingCartItems.SingleOrDefault(
+        i => i.Product.ProductId == product.ProductId && i.ShoppingCartId == ShoppingCartId);
 
-      if(orderProduct == null)
+      if(shoppingCartItem == null)
       {
-        orderProduct = new OrderProduct
+        shoppingCartItem = new ShoppingCartItem
         {
-          OrderProductGuid = OrderProductGuid,
+          ShoppingCartId = ShoppingCartId,
           Product = product,
           Quantity = quantity
         };
       }
       else
       {
-        orderProduct.Quantity++;
+        shoppingCartItem.Quantity++;
       }
 
       _db.SaveChanges();
     }
 
-    // public int RemoveFromCart(Product product)
-    // {
-    //   var orderProduct = _db.OrderProduct.SingleOrDefault(
-    //     s => s.Product.ProductId == product.ProductId && s.OrderProductGuid == OrderProductGuid);
+    public int RemoveFromShoppingCart(Product product)
+    {
+      var shoppingCartItem = _db.ShoppingCartItems.SingleOrDefault(
+        i => i.Product.ProductId == product.ProductId && i.ShoppingCartId == ShoppingCartId);
+
+      var quantity = 0;
+
+      if(shoppingCartItem != null)
+      {
+        if(shoppingCartItem.Quantity > 1)
+        {
+          shoppingCartItem.Quantity--;
+          quantity = shoppingCartItem.Quantity;
+        }
+        else
+        {
+          _db.ShoppingCartItems.Remove(shoppingCartItem);
+        }        
+      }
+
+      _db.SaveChanges();
+      return quantity;
+    }
+
+    public List<ShoppingCartItem> GetAllShoppingCartItems()
+    {
+      var shoppingCartItems = ShoppingCartItems ?? (ShoppingCartItems = _db.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)
+        .Include(p => p.Product)
+        .ToList());
       
-    //   var localQuantity = 0;
+      return shoppingCartItems;
+    }
 
-    //   if(orderProduct != null)
-    //   {
-    //     if(orderProduct.Quantity > 1)
-    //     {
-    //       orderProduct.Quantity--;
-    //       localQuantity = orderProduct.Quantity;
-    //     }
-    //     else
-    //     {
+    public void ClearShoppingCart()
+    {
+      var shoppingCartItems = _db.ShoppingCartItems.Where(i => i.ShoppingCartId == ShoppingCartId);
+      _db.ShoppingCartItems.RemoveRange(shoppingCartItems);
+      _db.SaveChanges();
+    }
 
-    //     }
-    //   }
-    // }
+    public decimal GetShoppingCartTotalPrice()
+    {
+      var totalPrice = _db.ShoppingCartItems.Where(i => i.ShoppingCartId == ShoppingCartId)
+        .Select(p => p.Product.ProductPrice).Sum();
+      
+      return totalPrice;
+    }
   }
 }
