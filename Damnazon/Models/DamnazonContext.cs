@@ -6,15 +6,12 @@ namespace Damnazon.Models
   public class DamnazonContext : IdentityDbContext<ApplicationUser>
   {
     public DamnazonContext(DbContextOptions<DamnazonContext> options) : 
-        base(options) 
-    { 
-    }
-    public virtual DbSet<Order> Orders { get; set; }
-    public virtual DbSet<Category> Categories { get; set; }
-    public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
-    public virtual DbSet<Product> Products { get; set; }
-    public virtual DbSet<OrderProduct> OrderProduct { get; set; }
+        base(options) {}
 
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+    public DbSet<Order> Orders { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

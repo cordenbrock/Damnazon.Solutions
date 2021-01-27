@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Damnazon.Migrations
 {
-    public partial class Initial : Migration
+    public partial class renewDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +54,8 @@ namespace Damnazon.Migrations
                     CategoryId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CategoryName = table.Column<string>(nullable: true),
-                    CategoryDescription = table.Column<string>(nullable: true)
+                    CategoryDescription = table.Column<string>(nullable: true),
+                    ThumbnailImage = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,6 +198,10 @@ namespace Damnazon.Migrations
                     ProductName = table.Column<string>(nullable: true),
                     ProductDescription = table.Column<string>(nullable: true),
                     ProductPrice = table.Column<decimal>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
+                    IsDamnazonsChoice = table.Column<bool>(nullable: false),
+                    IsDamnazonSlime = table.Column<bool>(nullable: false),
+                    IsInStock = table.Column<bool>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -211,62 +216,55 @@ namespace Damnazon.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderProduct",
+                name: "ShoppingCartItems",
                 columns: table => new
                 {
-                    OrderProductId = table.Column<int>(nullable: false)
+                    ShoppingCartItemId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    OrderId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    TotalPrice = table.Column<decimal>(nullable: false)
+                    ShoppingCartId = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderProduct", x => x.OrderProductId);
+                    table.PrimaryKey("PK_ShoppingCartItems", x => x.ShoppingCartItemId);
                     table.ForeignKey(
-                        name: "FK_OrderProduct_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderProduct_Products_ProductId",
+                        name: "FK_ShoppingCartItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "CategoryDescription", "CategoryName" },
-                values: new object[] { 1, "This is a tab for all of Jeff Bezos finacial assets.", "Assets" });
+                columns: new[] { "CategoryId", "CategoryDescription", "CategoryName", "ThumbnailImage" },
+                values: new object[] { 1, "This is a tab for all of Jeff Bezos finacial assets.", "Assets", "\\img\\asset.jpg" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "CategoryDescription", "CategoryName" },
-                values: new object[] { 2, "This is a tab for all of Jeff Bezos properties.", "Properties" });
+                columns: new[] { "CategoryId", "CategoryDescription", "CategoryName", "ThumbnailImage" },
+                values: new object[] { 2, "This is a tab for all of Jeff Bezos properties.", "Properties", "\\img\\seattleLakehouse.jpg" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "CategoryDescription", "CategoryName" },
-                values: new object[] { 3, "This is a tab for all of Jeff Bezos vehicles.", "Vehicles" });
+                columns: new[] { "CategoryId", "CategoryDescription", "CategoryName", "ThumbnailImage" },
+                values: new object[] { 3, "This is a tab for all of Jeff Bezos vehicles.", "Vehicles", "\\img\\hondaAccord.jpg" });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "CategoryId", "ProductDescription", "ProductName", "ProductPrice" },
-                values: new object[] { 1, 1, "", "", 5.25m });
+                columns: new[] { "ProductId", "CategoryId", "Image", "IsDamnazonSlime", "IsDamnazonsChoice", "IsInStock", "ProductDescription", "ProductName", "ProductPrice" },
+                values: new object[] { 1, 1, "\\img\\blueOrigin.jpg", true, true, false, "Space bugs, everywhere, hurry, buy blue origin stock today, fight cosmic insects!", "Lorem Blue Origin Stocksum", 5.25m });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "CategoryId", "ProductDescription", "ProductName", "ProductPrice" },
-                values: new object[] { 2, 2, "", "", 4.10m });
+                columns: new[] { "ProductId", "CategoryId", "Image", "IsDamnazonSlime", "IsDamnazonsChoice", "IsInStock", "ProductDescription", "ProductName", "ProductPrice" },
+                values: new object[] { 2, 2, "\\img\\washingtonPost.jpg", false, true, false, "Real news based on real true facts", "Lorem Washerington Pest", 4.10m });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "CategoryId", "ProductDescription", "ProductName", "ProductPrice" },
-                values: new object[] { 3, 3, "", "", 2.5m });
+                columns: new[] { "ProductId", "CategoryId", "Image", "IsDamnazonSlime", "IsDamnazonsChoice", "IsInStock", "ProductDescription", "ProductName", "ProductPrice" },
+                values: new object[] { 3, 3, "\\img\\gulfstreamPrivateJet.jpg", true, false, false, "WOOOOOOOOOOOO", "Lorem Bezos Jetticus jettison", 2.5m });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -306,19 +304,14 @@ namespace Damnazon.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderProduct_OrderId",
-                table: "OrderProduct",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderProduct_ProductId",
-                table: "OrderProduct",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartItems_ProductId",
+                table: "ShoppingCartItems",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -339,16 +332,16 @@ namespace Damnazon.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "OrderProduct");
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingCartItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");

@@ -146,30 +146,6 @@ namespace Damnazon.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Damnazon.Models.OrderProduct", b =>
-                {
-                    b.Property<int>("OrderProductId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<string>("OrderProductGuid");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<decimal>("TotalPrice");
-
-                    b.HasKey("OrderProductId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderProduct");
-                });
-
             modelBuilder.Entity("Damnazon.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -234,6 +210,24 @@ namespace Damnazon.Migrations
                             ProductName = "Lorem Bezos Jetticus jettison",
                             ProductPrice = 2.5m
                         });
+                });
+
+            modelBuilder.Entity("Damnazon.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<string>("ShoppingCartId");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -343,25 +337,19 @@ namespace Damnazon.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Damnazon.Models.OrderProduct", b =>
-                {
-                    b.HasOne("Damnazon.Models.Order", "Order")
-                        .WithMany("OrderProduct")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Damnazon.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Damnazon.Models.Product", b =>
                 {
                     b.HasOne("Damnazon.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Damnazon.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("Damnazon.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Damnazon.Migrations
 {
     [DbContext(typeof(DamnazonContext))]
-    [Migration("20210126180529_addProductFields")]
-    partial class addProductFields
+    [Migration("20210127090037_renewDatabase")]
+    partial class renewDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,6 +78,8 @@ namespace Damnazon.Migrations
 
                     b.Property<string>("CategoryName");
 
+                    b.Property<string>("ThumbnailImage");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -87,19 +89,22 @@ namespace Damnazon.Migrations
                         {
                             CategoryId = 1,
                             CategoryDescription = "This is a tab for all of Jeff Bezos finacial assets.",
-                            CategoryName = "Assets"
+                            CategoryName = "Assets",
+                            ThumbnailImage = "\\img\\asset.jpg"
                         },
                         new
                         {
                             CategoryId = 2,
                             CategoryDescription = "This is a tab for all of Jeff Bezos properties.",
-                            CategoryName = "Properties"
+                            CategoryName = "Properties",
+                            ThumbnailImage = "\\img\\seattleLakehouse.jpg"
                         },
                         new
                         {
                             CategoryId = 3,
                             CategoryDescription = "This is a tab for all of Jeff Bezos vehicles.",
-                            CategoryName = "Vehicles"
+                            CategoryName = "Vehicles",
+                            ThumbnailImage = "\\img\\hondaAccord.jpg"
                         });
                 });
 
@@ -143,28 +148,6 @@ namespace Damnazon.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Damnazon.Models.OrderProduct", b =>
-                {
-                    b.Property<int>("OrderProductId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<decimal>("TotalPrice");
-
-                    b.HasKey("OrderProductId");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderProduct");
-                });
-
             modelBuilder.Entity("Damnazon.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -197,7 +180,7 @@ namespace Damnazon.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 1,
-                            Image = "",
+                            Image = "\\img\\blueOrigin.jpg",
                             IsDamnazonSlime = true,
                             IsDamnazonsChoice = true,
                             IsInStock = false,
@@ -209,7 +192,7 @@ namespace Damnazon.Migrations
                         {
                             ProductId = 2,
                             CategoryId = 2,
-                            Image = "",
+                            Image = "\\img\\washingtonPost.jpg",
                             IsDamnazonSlime = false,
                             IsDamnazonsChoice = true,
                             IsInStock = false,
@@ -221,14 +204,32 @@ namespace Damnazon.Migrations
                         {
                             ProductId = 3,
                             CategoryId = 3,
-                            Image = "",
+                            Image = "\\img\\gulfstreamPrivateJet.jpg",
                             IsDamnazonSlime = true,
                             IsDamnazonsChoice = false,
                             IsInStock = false,
                             ProductDescription = "WOOOOOOOOOOOO",
-                            ProductName = "Lorem Bezos Bicyclusum",
+                            ProductName = "Lorem Bezos Jetticus jettison",
                             ProductPrice = 2.5m
                         });
+                });
+
+            modelBuilder.Entity("Damnazon.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<int>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<string>("ShoppingCartId");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -338,25 +339,19 @@ namespace Damnazon.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Damnazon.Models.OrderProduct", b =>
-                {
-                    b.HasOne("Damnazon.Models.Order", "Order")
-                        .WithMany("OrderProduct")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Damnazon.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Damnazon.Models.Product", b =>
                 {
                     b.HasOne("Damnazon.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Damnazon.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("Damnazon.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
