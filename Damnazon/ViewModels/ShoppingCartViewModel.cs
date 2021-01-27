@@ -9,6 +9,6 @@ namespace Damnazon.ViewModels
     public class ShoppingCartViewModel
     {
         public ShoppingCart ShoppingCart { get; set; }
-        public decimal ShoppingCartTotal { get; set; }
+        public decimal ShoppingCartTotalPrice { get; set; }
     }
 }
