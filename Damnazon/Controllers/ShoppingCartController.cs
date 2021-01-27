@@ -42,7 +42,7 @@ namespace Damnazon.Controllers
       return RedirectToAction("Index");
     }
 
-    public RedirectToActionResult RemoveFromShoppingCArt(int productId)
+    public RedirectToActionResult RemoveFromShoppingCart(int productId)
     {
       var selectedProduct = _productRepository.GetAllProducts.FirstOrDefault(p => p.ProductId == productId);
 
@@ -53,7 +53,10 @@ namespace Damnazon.Controllers
 
       return RedirectToAction("Index");
     }
-
-    
+    public RedirectToActionResult ClearShoppingCart()
+    {
+      _shoppingCart.ClearShoppingCart();
+      return RedirectToAction("Index");
+    }
   }  
 }
