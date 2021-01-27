@@ -10,5 +10,6 @@ namespace Damnazon.ViewModels
   {
     public IEnumerable<Product> DamnazonsChoiceProducts { get; set; }
     public IEnumerable<Product> DamnazonSlimeProducts { get; set; }
+    public IEnumerable<Category> Categories { get; set; }
   }
 }
