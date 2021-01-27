@@ -1,6 +1,3 @@
-
-// This class might not be needed? Might already be handled by OrderProduct?
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +10,6 @@ namespace Damnazon.Models
     public int ShoppingCartItemId { get; set; }
     public string ShoppingCartId { get; set; }
     public Product Product { get; set; }
-    public int TotalPrice { get; set; }
-    public List<OrderProduct> OrderProduct { get; set; }
+    public int Quantity { get; set; }
   }
 }
