@@ -24,7 +24,7 @@ namespace Damnazon.Controllers
       var shoppingCartViewModel = new ShoppingCartViewModel
       {
         ShoppingCart = _shoppingCart,
-        ShoppingCartTotal = _shoppingCart.GetShoppingCartTotalPrice()
+        ShoppingCartTotalPrice = _shoppingCart.GetShoppingCartTotalPrice()
       };
       
       return View(shoppingCartViewModel);
