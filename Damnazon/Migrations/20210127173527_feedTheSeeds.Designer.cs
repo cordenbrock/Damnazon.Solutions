@@ -3,14 +3,16 @@ using System;
 using Damnazon.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Damnazon.Migrations
 {
     [DbContext(typeof(DamnazonContext))]
-    partial class DamnazonContextModelSnapshot : ModelSnapshot
+    [Migration("20210127173527_feedTheSeeds")]
+    partial class feedTheSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,28 +90,28 @@ namespace Damnazon.Migrations
                             CategoryId = 1,
                             CategoryDescription = "Shop Jeff Bezos financial assets!",
                             CategoryName = "Assets",
-                            ThumbnailImage = "\\img\\assett2.jpg"
+                            ThumbnailImage = "\\img\\asset.jpg"
                         },
                         new
                         {
                             CategoryId = 2,
                             CategoryDescription = "Shop Jeff Bezos properties!",
                             CategoryName = "Properties",
-                            ThumbnailImage = "\\img\\properties.jpg"
+                            ThumbnailImage = "\\img\\seattleLakehouse.jpg"
                         },
                         new
                         {
                             CategoryId = 3,
                             CategoryDescription = "Shop Jeff Bezos vehicles!",
                             CategoryName = "Vehicles",
-                            ThumbnailImage = "\\img\\vehicles.jpg"
+                            ThumbnailImage = "\\img\\hondaAccord.jpg"
                         },
                         new
                         {
                             CategoryId = 4,
                             CategoryDescription = "Shop Jeff Bezos personal items!",
                             CategoryName = "Items",
-                            ThumbnailImage = "\\img\\items.jpg"
+                            ThumbnailImage = "\\img\\clock.jpg"
                         });
                 });
 
@@ -233,7 +235,7 @@ namespace Damnazon.Migrations
                         {
                             ProductId = 5,
                             CategoryId = 2,
-                            Image = "\\img\\largestHouseInDc.jpg",
+                            Image = "\\img\\seattleLakehouse.jpg",
                             IsDamnazonSlime = false,
                             IsDamnazonsChoice = true,
                             IsInStock = false,

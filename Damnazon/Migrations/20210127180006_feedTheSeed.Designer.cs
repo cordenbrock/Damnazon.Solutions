@@ -3,14 +3,16 @@ using System;
 using Damnazon.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Damnazon.Migrations
 {
     [DbContext(typeof(DamnazonContext))]
-    partial class DamnazonContextModelSnapshot : ModelSnapshot
+    [Migration("20210127180006_feedTheSeed")]
+    partial class feedTheSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
