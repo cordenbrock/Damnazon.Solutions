@@ -1,14 +1,9 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-/* a.navbar-brand {
+﻿/* a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 } */
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
   font-size: 14px;
 }
@@ -16,7 +11,7 @@ html {
   html {
     font-size: 16px;
   }
-}
+} 
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -43,6 +38,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 80px;
+  font-family: "Amazon Ember";
   background-color: rgb(223, 210, 210);
   padding-top: 150px;
   text-align: center;
@@ -59,22 +55,24 @@ body {
 
 .img-responsive {
   float: left;
-  width: 1in;
-  height: 0.73in;
-  /* margin-top: 10px;
-  margin-left: 15px; */
+  width: 1.75in;
+  height: 1.25in;
+  /* margin-top: 10px; */
+  margin-left: 15px;
 }
 
 .navbar {
   background-color: rgb(28, 33, 49);
-  padding: 5px;
+  padding: 1px;
+  height: 1.15in;
   /* border: 1px solid transparent;
   border-radius: 3px; */
 } 
 
 #navigationTitles {
   float: right;
-  padding: 10px;
+  padding-right:30px;
+  padding-top: 25px;
 
 }
 
@@ -93,12 +91,8 @@ body {
 
 
 li {
-  font-size: 15px;
-  border: 0.1px solid rgb(0, 0, 0);
+  font-size: 22px;
   border-radius: 0.2cm;
-  /* padding: 10px 20px; */
-  /* cursor: pointer;
-  background: none; */
 }
 
 /* li:hover{
@@ -113,6 +107,9 @@ li {
 
 .thumbnail {
   padding: 0;
+  width: 130px;
+  height: 60px;
+  display: table;
 }
 
 .thumbnail .caption-full {
@@ -125,48 +122,44 @@ li {
 
 
 
+/*Bezos Cards*/
+* {
+  box-sizing: border-box;
+}
+
+.bezos-card {
+width: 4in;
+height: auto;
+float: center;
+}
+
+.bezos-card img {
+background-size: cover;
+width: 100%;
+height: 50%;
+border-radius: 5px;
+padding: 5px;
+}
 
 
+.col-sm-4 {
+  float: left;
+  margin-right: 0px;
+}
 
+#categoryImage {
+  height: 3in;
+}
 
+.box1 {
+  margin-left: 40px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.img-cart {
+  width: 40px;
+  width: 40px;
+  outline: 0;
+  border: none;
+  outline-style: none;
+}
 
