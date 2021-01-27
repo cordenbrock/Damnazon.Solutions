@@ -29,5 +29,31 @@ namespace Damnazon.Controllers
       
       return View(shoppingCartViewModel);
     }
+
+    public RedirectToActionResult AddToShoppingCart(int productId)
+    {
+      var selectedProduct = _productRepository.GetAllProducts.FirstOrDefault(p => p.ProductId == productId);
+      
+      if (selectedProduct != null)
+      {
+        _shoppingCart.AddToShoppingCart(selectedProduct, 1);
+      }
+
+      return RedirectToAction("Index");
+    }
+
+    public RedirectToActionResult RemoveFromShoppingCArt(int productId)
+    {
+      var selectedProduct = _productRepository.GetAllProducts.FirstOrDefault(p => p.ProductId == productId);
+
+      if (selectedProduct != null)
+      {
+        _shoppingCart.RemoveFromShoppingCart(selectedProduct);
+      }
+
+      return RedirectToAction("Index");
+    }
+
+    
   }  
 }
