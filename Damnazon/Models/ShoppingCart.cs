@@ -23,13 +23,14 @@ namespace Damnazon.Models
       ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
       var context = services.GetService<DamnazonContext>();
-      string shoppingCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+      string shoppingCartId = session.GetString("ShoppingCartId") ?? Guid.NewGuid().ToString();
       session.SetString("ShoppingCartId", shoppingCartId);
 
       return new ShoppingCart(context) { ShoppingCartId = shoppingCartId };
     }
 
-    public void AddToShoppingCart(Product product, int quantity) {
+    public void AddToShoppingCart(Product product, int quantity)
+    {
       var shoppingCartItem = _db.ShoppingCartItems.SingleOrDefault(
         i => i.Product.ProductId == product.ProductId && i.ShoppingCartId == ShoppingCartId);
 
@@ -41,6 +42,7 @@ namespace Damnazon.Models
           Product = product,
           Quantity = quantity
         };
+        _db.ShoppingCartItems.Add(shoppingCartItem);
       }
       else
       {
