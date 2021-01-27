@@ -35,7 +35,8 @@ namespace Damnazon
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IOrderRepository, OrderRepository>();
       services.AddScoped<ShoppingCart>(s => ShoppingCart.GetShoppingCart(s));
-
+      services.AddHttpContextAccessor();
+      services.AddSession();
 
       services.AddEntityFrameworkMySql()
         .AddDbContext<DamnazonContext>(options => options
