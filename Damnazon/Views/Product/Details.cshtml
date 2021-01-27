@@ -1,11 +1,12 @@
 @model Product
 
 <h1>@Model.ProductName</h1>
-
-<div>
-    <div>
-        <h3>@Model.ProductPrice</h3>
-        <h3><a href="#">@Model.ProductName</a></h3>
-        <p>@Model.ProductDescription</p>
+<div class="container" id="productCardContainer">
+    <div class="thumbnail">
+        <div class="caption-full">
+            <h3 class="pull right">@Model.ProductPrice</h3>
+            <p>@Model.ProductDescription</p>
+            <p>@Model.CategoryId</p>
+        </div>
     </div>
-</div>
+</div>    
