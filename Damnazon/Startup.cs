@@ -60,9 +60,8 @@ namespace Damnazon
     public void Configure(IApplicationBuilder app)
     {
       app.UseStaticFiles();
-
+      app.UseSession();
       app.UseDeveloperExceptionPage();
-
       app.UseAuthentication();
       app.UseOpenApi();
       app.UseSwaggerUi3();
