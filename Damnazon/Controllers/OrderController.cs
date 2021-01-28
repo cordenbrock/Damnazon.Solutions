@@ -1,7 +1,15 @@
 using Damnazon.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+using Stripe;
 
 namespace Damnazon.Controllers
 {
@@ -22,7 +30,7 @@ namespace Damnazon.Controllers
     }
 
     [HttpPost]
-    public IActionResult Checkout(Order order)
+    public IActionResult Checkout(Models.Order order)
     {
       _shoppingCart.ShoppingCartItems = _shoppingCart.GetAllShoppingCartItems();
 
@@ -34,13 +42,12 @@ namespace Damnazon.Controllers
       if (ModelState.IsValid)
         {
           _orderRepository.CreateOrder(order);
-          _shoppingCart.ClearShoppingCart();
-          return RedirectToAction("CheckoutComplete");
+          
+          return RedirectToAction("Create", "PaymentIntentApi");
         }
 
       return View(order);
     }
-
     public IActionResult CheckoutComplete()
     {
       ViewBag.CheckoutCompleteMessage = "Thank you for your order. Enjoy your items.";
@@ -48,12 +55,6 @@ namespace Damnazon.Controllers
     }
   }
 }
-
-
-
-
-
-
 
 
 

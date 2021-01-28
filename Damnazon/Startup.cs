@@ -11,7 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using Stripe;
 
 namespace Damnazon
 {
@@ -29,8 +32,11 @@ namespace Damnazon
 
     public void ConfigureServices(IServiceCollection services)
     {
+
+      StripeConfiguration.ApiKey = EnvironmentVariables.ApiKey;
+
       services.AddSwaggerDocument();
-      services.AddMvc();
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
       services.AddScoped<ICategoryRepository, CategoryRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IOrderRepository, OrderRepository>();
