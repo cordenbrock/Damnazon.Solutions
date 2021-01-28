@@ -1,14 +1,15 @@
 @model Product
 
-<div class="col-sm-4 col-lg-4 col-md-4">
+<div class="col-lg-6">
   <div class="thumbnail">
     <div class="bezos-card">
       <img id="productImage" src="@Model.Image" alt="product image" />
       <h3><a asp-controller="Product" asp-action="Details" asp-route-id="@Model.ProductId">@Model.ProductName</a></h3>
-      <p>@Model.ProductDescription</p>
-      <h3 class="pull-right">@Model.ProductPrice.ToString("c")</h3>
+      @* <p>@Model.ProductDescription</p> *@
+      @* <h3 class="pull-right">@Model.ProductPrice.ToString("c")</h3> *@
     </div>
     <div class="addToCart">
+    <h3>@Model.ProductPrice.ToString("c")</h3>
       <p class="button">
         <a class="btn btn-primary"
           asp-controller="ShoppingCart"
@@ -18,3 +19,8 @@
     </div>
   </div>
 </div>
+
+
+  
+
+
