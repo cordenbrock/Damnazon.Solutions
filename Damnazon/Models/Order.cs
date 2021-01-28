@@ -43,8 +43,7 @@ namespace Damnazon.Models
 		[DataType(DataType.PhoneNumber)]
 		[Display(Name = "Phone Number")]
 		public string PhoneNumber { get; set; }
-
-		public List<OrderProduct> OrderProduct { get; set; }
+		public List<OrderDetail> OrderDetails { get; set; }
 
 		[BindNever]
 		public decimal OrderTotal { get; set; }
