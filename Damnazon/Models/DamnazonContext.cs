@@ -156,13 +156,79 @@ namespace Damnazon.Models
           modelBuilder.Entity<Product>().HasData(new Product
           {
             ProductId = 10,
-            ProductName = "Rolex",
-            ProductPrice = 200000,
-            ProductDescription = "Overly priced Rolex that once belonged to Jeff Bezos.",
-            Image = "\\img\\watch.jpg",
+            ProductName = "Robot Dog",
+            ProductPrice = 50000,
+            ProductDescription = "The pooch's name is SpotMini. 55 pounds and 3ft tall.",
+            Image = "\\img\\dog.png",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 4
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 11,
+            ProductName = "Amazon Robotics",
+            ProductPrice = 750000000,
+            ProductDescription = "Originally Kiva Systems, the robotics company was renamed as Amazon Robotics after Amazon acquired it for $775 million in March 2012. The company uses package-carrying robots at logistic centres and warehouses of Amazon.",
+            Image = "\\img\\amzonrobotics.png",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 1
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 12,
+            ProductName = "Bugatti Veyron Mansory",
+            ProductPrice = 4000000000,
+            ProductDescription = "Jeff Bezos's favourite car. The Bugatti Veyron Mansory is a hypercar without limits. Take the unparalleled specs of the Veyron and unsparingly use top-scale leather and carbon fiber throughout out the body of the car.",
+            Image = "\\img\\bugatti.jpg",
             IsDamnazonsChoice = true,
             IsDamnazonSlime = false,
             CategoryId = 3
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 13,
+            ProductName = "W Motors Lykan Hypersport",
+            ProductPrice = 4000000,
+            ProductDescription = "Lykan Hypersport is a Lebanese limited production sports car manufactured by W Motors, a United Arab Emirates based company, founded in 2012 in Lebanon with the collaboration of Lebanese and Italian engineers. It is the first sports car to be designed and produced indigenously in the Middle East.",
+            Image = "\\img\\lykan.jpg",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 3
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 14,
+            ProductName = "NY Apartment",
+            ProductPrice = 17000000,
+            ProductDescription = "A fancy 10,000 square feet apartment in New York’s upscale Central Park West area, Bezos owns three linked apartments that are spread over 10,000 square feet.",
+            Image = "\\img\\ny.png",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 2
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 15,
+            ProductName = "Beverly Hills Home",
+            ProductPrice = 24000000,
+            ProductDescription = "Spanish style mansion in Beverly Hills, California. According to a report by Business Insider, the seven-bedroom seven-bathroom home has a greenhouse, a sunken and lighted tennis court, a huge swimming pool, four fountains, and a six-car garage.",
+            Image = "\\img\\beverlyhills.png",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 2
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 16,
+            ProductName = "Gold Comb",
+            ProductPrice = 1000000,
+            ProductDescription = "Used; Like New",
+            Image = "\\img\\goldcomb.jpg",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 4
           });
         }
   }
