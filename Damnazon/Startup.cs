@@ -7,11 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Damnazon.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-//using Microsoft.Extensions.Hosting;
+using Stripe;
 
 namespace Damnazon
 {
@@ -29,6 +25,8 @@ namespace Damnazon
 
     public void ConfigureServices(IServiceCollection services)
     {
+      StripeConfiguration.ApiKey = EnvironmentVariables.ApiKey;
+      
       services.AddSwaggerDocument();
       services.AddMvc();
       services.AddScoped<ICategoryRepository, CategoryRepository>();
