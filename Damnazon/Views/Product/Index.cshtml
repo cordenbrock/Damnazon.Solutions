@@ -1,7 +1,8 @@
 @model ProductListViewModel
-
 <h1>Jeff Bezos</h1>
-<h1><u><strong>@Model.CurrentCategory</strong></u></h1>
+
+<h1><strong>@Model.CurrentCategory</strong></h1>
+<hr />
 @foreach (var product in Model.Products)
 {
   <partial name="_productCard" model="product" />
