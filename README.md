@@ -84,6 +84,7 @@ git remote add origin [personal Github repo. link]
 
 ## **SQL Schema**
 ```
+
 ```
 
 ## **Technologies Used**
@@ -95,15 +96,16 @@ git remote add origin [personal Github repo. link]
 * MySQL WorkBench V: 8.0
 * Entity Framework Core V: 2.2.6
 * dotnet script, REPL
+* Stripe API
 
 ------------------------------
 ## 👥 Contributors
 
 | Author | Email |
 |--------|:-----:|
-| [Cory Nordernbrock](https://www.linkedin.com/in/callie-stump/) | [callie@stu.mp](mailto:callie@stu.mp) |
+| [Cory Nordernbrock](https://www.linkedin.com/in/corynordenbrock/) | [cordenbrock@gmail.com](mailto:cordenbrock@gmail.cp,) |
 | [Joseph Giunta](https://www.linkedin.com/in/giuntajoseph/) | [jgnohack@gmail.com](mailto:jgnohack@gmail.com) |
-| [Constantine Yakubovski](https://www.linkedin.com/in/callie-stump/) | [faustlarsen@gmail.com](mailto:faustlarsen@gmail.com) |
+| [Constantine Yakubovski](https://www.linkedin.com/in/constantine-yakubovski/) | [faustlarsen@gmail.com](mailto:faustlarsen@gmail.com) |
 | [Callie Stump](https://www.linkedin.com/in/callie-stump/) | [callie@stu.mp](mailto:callie@stu.mp) |
 ------------------------------
 
