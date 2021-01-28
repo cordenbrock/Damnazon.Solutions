@@ -1,5 +1,15 @@
 @model ShoppingCartViewModel
 
-<li>
-  <span style="color:yellow" coords="195,1,360,170">@Model.ShoppingCart.ShoppingCartItems.Count</span>
-</li>
+<span class="z" style="color:#e47911" > @Model.ShoppingCart.ShoppingCartItems.Count</span>
+
+ <style>
+
+ span.z{
+    position:absolute;
+    bottom: 1.6cm;
+    right: 1.7cm;
+    font-size: 20px;
+ }
+
+</style>
+
