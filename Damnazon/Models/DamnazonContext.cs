@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Damnazon.Models
 {
-  public class DamnazonContext : IdentityDbContext<ApplicationUser>
+  public class DamnazonContext : DbContext
   {
     public DamnazonContext(DbContextOptions<DamnazonContext> options) : 
         base(options) {}
@@ -12,6 +12,7 @@ namespace Damnazon.Models
     public DbSet<Category> Categories { get; set; }
     public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderDetail> OrderDetails { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -151,6 +152,17 @@ namespace Damnazon.Models
             IsDamnazonsChoice = true,
             IsDamnazonSlime = false,
             CategoryId = 4
+          });
+          modelBuilder.Entity<Product>().HasData(new Product
+          {
+            ProductId = 10,
+            ProductName = "Rolex",
+            ProductPrice = 200000,
+            ProductDescription = "Overly priced Rolex that once belonged to Jeff Bezos.",
+            Image = "\\img\\watch.jpg",
+            IsDamnazonsChoice = true,
+            IsDamnazonSlime = false,
+            CategoryId = 3
           });
         }
   }
