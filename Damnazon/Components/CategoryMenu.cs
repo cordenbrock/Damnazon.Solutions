@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace Damnazon.Components
 {
-    public class CategoryMenu : ViewComponent
+  public class CategoryMenu : ViewComponent
+  {
+    private readonly ICategoryRepository _categoryRepository;
+    public CategoryMenu(ICategoryRepository categoryRepository)
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryMenu(ICategoryRepository categoryRepository)
-        {
-            _categoryRepository = categoryRepository;
-        }
-
-        public IViewComponentResult Invoke()
-        {
-            var categories = _categoryRepository.GetAllCategories.OrderBy(c => c.CategoryName);
-
-            return View(categories);
-        }
+      _categoryRepository = categoryRepository;
     }
+
+    public IViewComponentResult Invoke()
+    {
+      var categories = _categoryRepository.GetAllCategories.OrderBy(c => c.CategoryName);
+
+      return View(categories);
+    }
+  }
 }
