@@ -1,12 +1,23 @@
 @model Product
-
-<h1>@Model.ProductName</h1>
-<div class="container" id="productCardContainer">
-    <div class="thumbnail">
-        <div class="caption-full">
-            <h3 class="pull right">@Model.ProductPrice</h3>
-            <p>@Model.ProductDescription</p>
-            <p>@Model.CategoryId</p>
-        </div>
+<h1><strong>@Model.ProductName</strong></h1>
+<hr />
+<div class="col-lg-6">
+  <div class="thumbnail">
+    <div class="bezos-card">
+      <img id="productImage" src="@Model.Image" alt="product image" />
+      <p>@Model.ProductDescription</p>
+      @* <h3 class="pull-right">@Model.ProductPrice.ToString("c")</h3> *@
     </div>
-</div>    
+    <div class="addToCart">
+    <h3>@Model.ProductPrice.ToString("c")</h3>
+      <p class="button">
+        <a class="btn btn-primary"
+          asp-controller="ShoppingCart"
+          asp-action="AddToShoppingCart"
+          asp-route-productId="@Model.ProductId">Add to Cart</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+@* <a asp-controller="Category" asp-action="Index" asp-route-category="@Model.CategoryId">Go Back</a> *@
