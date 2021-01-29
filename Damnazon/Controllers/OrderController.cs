@@ -1,5 +1,4 @@
 using Damnazon.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -35,7 +34,7 @@ namespace Damnazon.Controllers
         {
           _orderRepository.CreateOrder(order);
           _shoppingCart.ClearShoppingCart();
-          return RedirectToAction("CheckoutComplete");
+          return RedirectToAction("Create", "PaymentIntentApi");
         }
 
       return View(order);
