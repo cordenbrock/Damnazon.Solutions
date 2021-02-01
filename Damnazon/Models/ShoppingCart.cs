@@ -92,9 +92,9 @@ namespace Damnazon.Models
       _db.SaveChanges();
     }
 
-    public decimal GetShoppingCartTotalPrice()
+    public long GetShoppingCartTotalPrice()
     {
-      var totalPrice = _db.ShoppingCartItems.Where(i => i.ShoppingCartId == ShoppingCartId)
+      var totalPrice = (long) _db.ShoppingCartItems.Where(i => i.ShoppingCartId == ShoppingCartId)
         .Select(p => p.Product.ProductPrice).Sum();
       
       return totalPrice;
