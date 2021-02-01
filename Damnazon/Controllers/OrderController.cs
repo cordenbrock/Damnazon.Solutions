@@ -33,7 +33,6 @@ namespace Damnazon.Controllers
       if (ModelState.IsValid)
         {
           _orderRepository.CreateOrder(order);
-          _shoppingCart.ClearShoppingCart();
           return RedirectToAction("Create", "PaymentIntentApi");
         }
 
