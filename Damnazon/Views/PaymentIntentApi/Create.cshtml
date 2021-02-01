@@ -1,3 +1,7 @@
+@using Stripe;
+
+@model PaymentIntent
+
 @section stripe{
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
@@ -84,6 +88,7 @@ var orderComplete = function(paymentIntentId) {
       "href",
       "https://dashboard.stripe.com/test/payments/" + paymentIntentId
     );
+  document.querySelector(".result-message").append(`Confirmation token: ${paymentIntentId}`);
   document.querySelector(".result-message").classList.remove("hidden");
   document.querySelector("button").disabled = true;
 };
@@ -123,6 +128,6 @@ var loading = function(isLoading) {
   <p class="result-message hidden">
     Payment succeeded, see the result in your
     <a href="" target="_blank">Stripe dashboard.</a>
-    @* <p>Return token: @Model.id</p> *@
   </p>
+
 </form>
